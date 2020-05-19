@@ -58,6 +58,10 @@ class CustomPreviewsViewCell: UICollectionViewCell, UICollectionViewDelegate, UI
     
     private func setupCollectionView(){
         customCollectionView.register(InnerPreviewCell.self, forCellWithReuseIdentifier: cellId)
+        
+        if let layout = customCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 10
+        }
     }
     
     
@@ -88,18 +92,24 @@ class CustomPreviewsViewCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 106, height: 106)
+        return CGSize(width: 130, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = customCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InnerPreviewCell
-        cell.layer.cornerRadius = 53
+        cell.layer.cornerRadius = 65
+        cell.layer.borderColor = UIColor.red.cgColor
+        cell.layer.borderWidth = 3
         cell.clipsToBounds = true
         cell.previewData = videoPreviewData[indexPath.item]
     
         return cell
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+    }
     
     
     func setupLayout(){

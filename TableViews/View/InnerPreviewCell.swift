@@ -19,6 +19,7 @@ class InnerPreviewCell: UICollectionViewCell {
     
     var previewImage: CustomImageView =  {
         let image = CustomImageView()
+        image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -32,8 +33,8 @@ class InnerPreviewCell: UICollectionViewCell {
         addSubview(previewImage)
         
         NSLayoutConstraint.activate([
-            previewImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            previewImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            previewImage.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 50),
+            previewImage.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 8),
         ])
     }
     
